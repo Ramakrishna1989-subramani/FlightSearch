@@ -1,0 +1,89 @@
+<div class="header-margin fligth-heading"> 
+  <header><h2>Flight Search Engine</h2></header>
+</div>
+<div class="w3-content w3-margin-top w3-width">
+      <!-- The Grid -->
+    <div class="w3-row-padding">
+        <!-- Left Column -->
+        <div class="w3-third">
+             <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-container">
+                    <div class="margin-todiv">
+                        <form (ngSubmit)="f.form.valid && serachfn()" #f="ngForm">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !originCity.valid }">
+                                <input placeholder="Enter origin City" type="text" class=" inputfield form-control input-underline input-lg" id="user" name="originCity" [(ngModel)]="model.originCity" #originCity="ngModel" required />
+                                <div *ngIf="f.submitted && !originCity.valid" class="help-block">origin City is required</div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&!destCity.valid }">
+                                <input placeholder="Enter Destination City" type="text" class="form-control input-underline input-lg inputfield" id="user" name="destCity" [(ngModel)]="model.destCity" #destCity="ngModel" required />
+                                <div *ngIf="f.submitted && !destCity.valid" class="help-block">Destination City is required</div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateArrival.valid }">
+                                <input placeholder="Arrival date" type="text" onfocus="(this.type='date')" class=" inputfield form-control input-underline input-lg" id="user" name="dateArrival" [(ngModel)]="model.dateArrival" #dateArrival="ngModel" required />
+                                <div *ngIf="f.submitted && !dateArrival.valid" class="help-block">Arrival Date is required</div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateDepature.valid }">
+                                <input placeholder="Departure date" type="text" onfocus="(this.type='date')" class="inputfield form-control input-underline input-lg" id="user" name="dateDepature" [(ngModel)]="model.dateDepature" #dateDepature="ngModel" required />
+                                <div *ngIf="f.submitted && !dateDepature.valid" class="help-block">Departure date is required</div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !passenger.valid }">
+                                <select name="passenger" placeholder="passenger"   [(ngModel)]="model.passenger" #passenger="ngModel" class=" inputfield form-control input-lg" required>
+                                         <option [ngValue]="undefined" disabled  selected> Please select Pessanger </option>
+                                          <option>Economy</option>
+                                          <option>Bussiness</option>
+                                </select>
+                                <div *ngIf="f.submitted && !passenger.valid" class="help-block">Departure date is required</div>
+                            </div>
+                            <button class="inputfield">Search</button>
+                        </form> 
+                    </div><br>
+                    <div class="display-refbor">
+                        <div class="display-refine">
+                            Refine flight Search
+                        </div>
+                         <input name="weight" type="range" min="100" max="500" step="10" class=" inputfield">
+                    </div>
+                </div>
+             </div><br>
+        <!-- End Left Column -->    
+        </div>
+
+         <!-- Right Column -->
+        <div class="w3-twothird display-w3-twothird">
+             <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="display-border">
+                    <span *ngIf="toOrginCity.length >0 && fromDestCity.length >0"><h3 class="display-msgpsan">{{toOrginCity}} > {{fromDestCity}} > {{destination2}}</h3></span>
+                    <span *ngIf="toOrginCity.length  == 0 && fromDestCity.length == 0">
+                        <h3 class="display-msgpsan">All the flights are listed</h3>
+                    </span>
+                    <p class="showdate">Depart:{{process(dateSelectedTo)}} <br>Return:{{process(dateSelectedFrom)}} </p>
+                </div>
+                 <div class="w3-container">
+                      <div *ngFor="let i of flightData" class="display-listflight" >
+                        <div class="class1">
+                            <p class="class2-ptag">
+                                {{i.SeatNo1}} <br>
+                                {{i.Origin1}} > {{i.Destination1}}  <br>
+                                Depart:{{i.ArrivalDate1 | date:"jm"}}  <br> Arrival:{{i.DepartureDate1 | date:"jm"}}
+                            </p>
+                        </div>
+                        <div class="class2" >
+                           <p class="class2-ptag"> 
+                            {{i.SeatNo2}} <br>
+                            {{i.Origin2}} > {{i.Destination2}}  <br> 
+                            Depart:{{i.ArrivalDate2 | date:"jm"}}  <br> Arrival:{{i.DepartureDate2 | date:"jm"}}</p>
+                         </div>
+                        <div class="class3">
+                            <p class="class3-ptag">
+                                <img src="images/download.png" class="class3-imgtag"><br><button>Book this Flight</button>
+                            </p>
+                        </div>
+                       <span class="displayprice-span">Rs.{{i.DisplayedPrice}}</span><br>
+                        
+                      </div>
+                </div>
+            <!-- End Right Column -->
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+<div class="w3-third">
+   <div class="w3-white w3-text-grey w3-card-4">
+      <div class="w3-container">
+         <div class="margin-todiv">
+            <form (ngSubmit)="f.form.valid && serachfn()" #f="ngForm">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !originCity.valid }">
+               <input placeholder="Enter origin City" type="text" class=" inputfield form-control input-underline input-lg" id="user" name="originCity" [(ngModel)]="model.originCity" #originCity="ngModel" required />
+               <div *ngIf="f.submitted && !originCity.valid" class="help-block">origin City is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&!destCity.valid }">
+               <input placeholder="Enter Destination City" type="text" class="form-control input-underline input-lg inputfield" id="user" name="destCity" [(ngModel)]="model.destCity" #destCity="ngModel" required />
+               <div *ngIf="f.submitted && !destCity.valid" class="help-block">Destination City is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateArrival.valid }">
+               <input placeholder="Arrival date" type="text" onfocus="(this.type='date')" class=" inputfield form-control input-underline input-lg" id="user" name="dateArrival" [(ngModel)]="model.dateArrival" #dateArrival="ngModel" required />
+               <div *ngIf="f.submitted && !dateArrival.valid" class="help-block">Arrival Date is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateDepature.valid }">
+               <input placeholder="Departure date" type="text" onfocus="(this.type='date')" class="inputfield form-control input-underline input-lg" id="user" name="dateDepature" [(ngModel)]="model.dateDepature" #dateDepature="ngModel" required />
+               <div *ngIf="f.submitted && !dateDepature.valid" class="help-block">Departure date is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !passenger.valid }">
+               <select name="passenger" placeholder="passenger"   [(ngModel)]="model.passenger" #passenger="ngModel" class=" inputfield form-control input-lg" required>
+               <option [ngValue]="undefined" disabled  selected> Please select Pessanger </option>
+               <option>Economy</option>
+               <option>Bussiness</option>
+               </select>
+               <div *ngIf="f.submitted && !passenger.valid" class="help-block">Departure date is required</div>
+            </div>
+            <button class="inputfield">Search</button>
+            </form> 
+         </div>
+         <br>
+         <div class="display-refbor">
+            <div class="display-refine">
+               Refine flight Search
+            </div>
+            <input name="weight" type="range" min="100" max="500" step="10" class=" inputfield">
+         </div>
+      </div>
+   </div>
+   <br>      
+</div>

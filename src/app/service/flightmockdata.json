@@ -1,5 +1,4 @@
-export const flightData: any[] = [
-{
+[{
 		"FlightNumber1": "7798",
         "PointOfSaleCountry": "US",
         "Origin1": "DEL",
@@ -408,6 +407,7 @@ export const flightData: any[] = [
         "Cabin2": "Economy",
         "Carrier2": "FR"
 }]
+
 
 
 

@@ -1,0 +1,39 @@
+<div class="w3-content w3-margin-top w3-width">
+    <div class="w3-row-padding">  
+        <app-searchform [model]="model" (changeName)="onchangeName()"></app-searchform>
+        <div class="w3-twothird display-w3-twothird">
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="display-border">
+                    <span *ngIf="toOrginCity.length >0 && fromDestCity.length >0"><h3 class="display-msgpsan">{{toOrginCity}} > {{fromDestCity}} > {{destination2}}</h3></span>
+                    <span *ngIf="toOrginCity.length  == 0 && fromDestCity.length == 0">
+                        <h3 class="display-msgpsan">All the flights are listed</h3>
+                    </span>
+                    <p class="showdate">Depart:{{process(dateSelectedTo)}} <br>Return:{{process(dateSelectedFrom)}} </p>
+                </div>
+                <div class="w3-container">
+                    <div *ngFor="let i of flightData" class="display-listflight" >
+                        <div class="class1">
+                            <p class="class2-ptag">
+                                {{i.SeatNo1}} <br>
+                                {{i.Origin1}} > {{i.Destination1}}  <br>
+                                Depart:{{i.ArrivalDate1 | date:"jm"}}  <br> Arrival:{{i.DepartureDate1 | date:"jm"}}
+                            </p>
+                        </div>
+                        <div class="class2" >
+                           <p class="class2-ptag"> 
+                            {{i.SeatNo2}} <br>
+                            {{i.Origin2}} > {{i.Destination2}}  <br> 
+                            Depart:{{i.ArrivalDate2 | date:"jm"}}  <br> Arrival:{{i.DepartureDate2 | date:"jm"}}</p>
+                         </div>
+                        <div class="class3">
+                            <p class="class3-ptag">
+                                <img src="images/download.png" class="class3-imgtag"><br><button>Book this Flight</button>
+                            </p>
+                        </div>
+                       <span class="displayprice-span">Rs.{{i.DisplayedPrice}}</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
